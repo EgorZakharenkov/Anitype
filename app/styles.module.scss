@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 415px;
 }
 
 
@@ -13,20 +12,3 @@
   width: 100%;
 }
 
-.infoAnime {
-  padding: 0 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-
-  h2 {
-    font-size: 48px;
-    font-weight: 500;
-    line-height: 45px;
-    color: #fff;
-  }
-  .wrapper {
-    display: flex;
-    gap: 10px;
-  }
-}
