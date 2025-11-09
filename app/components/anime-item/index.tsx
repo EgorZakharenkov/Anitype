@@ -11,9 +11,9 @@ interface AnimeItemProps {
 export const AnimeItem: FC<AnimeItemProps> = ({ name, rating, image }) => {
   return (
     <div className={styles.anime}>
-      <div className={styles.rating}>{rating}</div>
+      <span className={styles.rating}>{rating}</span>
       <span className={styles.name}>{name}</span>
-      <Image src={image} alt={"anime image"} />
+      <Image className={styles.image} src={image} alt={"anime image"} />
     </div>
   );
 };
