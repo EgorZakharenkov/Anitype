@@ -1,0 +1,28 @@
+.btn {
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  transition: .3s;
+  cursor: pointer;
+
+
+  &:hover {
+    background: #fff;
+    color: #000;
+  }
+}
+
+.secondary {
+  background: #2C2930;
+  color: #DDDDDD;
+}
+
+.active {
+  background: #fff;
+  color: #000;
+  padding: 8px 25px;
+}
