@@ -11,9 +11,17 @@ import { useAnimeStore } from "@/app/stores/animeStore";
 import { ListAnime } from "@/components/anime-list";
 
 export default function Home() {
-  const { fetchAnimeList, titles, loading, error } = useAnimeStore();
+  const {
+    fetchAnimeList,
+    recommended,
+    catalog,
+    loading,
+    error,
+    fetchCatalogReleases,
+  } = useAnimeStore();
   useEffect(() => {
     fetchAnimeList();
+    fetchCatalogReleases();
   }, []);
 
   return (
@@ -22,10 +30,16 @@ export default function Home() {
       <Image className={styles.bgImage} src={background} alt={"background"} />
       <InfoAnime title={"Монолог фармацевта"} />
       <ListAnime
-        titles={titles}
+        titles={recommended}
         loading={loading}
         error={error}
-        title={"Сейчас смотрят"}
+        title={"Рекомендации"}
+      />
+      <ListAnime
+        titles={catalog}
+        loading={loading}
+        error={error}
+        title={"Каталог"}
       />
     </div>
   );

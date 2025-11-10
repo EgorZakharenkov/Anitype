@@ -4,13 +4,15 @@
   flex-direction: column;
 
   .animeList {
-    margin-top: 100px;
+    margin-top: 40px;
     padding: 20px 25px;
     display: flex;
     flex-direction: column;
     gap: 15px;
 
     h3 {
+      font-size: 22px;
+      font-weight: 500;
       color: #fff;
     }
   }
