@@ -4,12 +4,17 @@
   flex-direction: column;
   justify-content: space-between;
   height: 145px;
+  transition: .3s;
+  width: 300px;
+  cursor: pointer;
+  border-radius: 10px;
+
 
 
   .rating {
     width: 40px;
     padding: 5px 10px;
-    background: #808080;
+    background: #5CDC34;
     color: #ffffff;
     border-radius: 15px;
     text-align: center;
@@ -29,5 +34,19 @@
     position: absolute;
     top: 0;
     z-index: -1;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+
+    .image {
+      background: #000;
+      opacity: .2;
+    }
   }
 }

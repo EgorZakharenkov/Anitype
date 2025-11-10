@@ -30,6 +30,14 @@
   border-radius: 10px;
   padding: 0 15px;
 
+
+  input {
+    color:#000000;
+
+    &::placeholder {
+      color: #232222;
+    }
+  }
   svg {
     color: #000;
   }

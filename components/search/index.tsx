@@ -2,8 +2,8 @@
 
 import { FC, SetStateAction, useState } from "react";
 
-import { SearchIcon } from "@/app/components/icons/search";
-import { Input } from "@/app/components/ui/input";
+import { SearchIcon } from "@/components/icons/search";
+import { Input } from "@/components/ui/input";
 import styles from "./style.module.scss";
 import { useOutside } from "@/app/utils/hooks/useOutside";
 

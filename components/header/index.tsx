@@ -1,12 +1,12 @@
 "use client";
 
 import styles from "./style.module.scss";
-import { Button } from "@/app/components/ui/button";
-import { Search } from "@/app/components/search";
-import { Ellipse } from "@/app/components/ui/ellipse";
-import { ProfileIcon } from "@/app/components/icons/profile";
+import { Search } from "@/components/search";
+import { Ellipse } from "@/components/ui/ellipse";
+import { ProfileIcon } from "@/components/icons/profile";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export const Header = () => {
   const links = [
