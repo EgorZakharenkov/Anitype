@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
 import { FallingSnowflakes } from "@/components/falling-leaves";
+import { Header } from "@/components/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${geistRobo.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} ${geistRobo.variable} `}
       >
         {children}
 

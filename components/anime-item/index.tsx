@@ -1,8 +1,10 @@
 import { FC } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
+import Link from "next/link";
 
 interface AnimeItemProps {
+  id: number;
   rating: string;
   name: string;
   image: string;
@@ -10,6 +12,7 @@ interface AnimeItemProps {
 }
 
 export const AnimeItem: FC<AnimeItemProps> = ({
+  id,
   name,
   rating,
   image,
@@ -21,7 +24,7 @@ export const AnimeItem: FC<AnimeItemProps> = ({
     : "Нет описания";
 
   return (
-    <div className={styles.anime}>
+    <Link href={`/anime/${id}`} className={styles.anime}>
       <span className={styles.rating}>{rating}</span>
       <span className={styles.name}>{name}</span>
       <Image
@@ -32,6 +35,6 @@ export const AnimeItem: FC<AnimeItemProps> = ({
         alt={"anime image"}
       />
       <h4 className={styles.description}>{truncatedDescription}...</h4>
-    </div>
+    </Link>
   );
 };

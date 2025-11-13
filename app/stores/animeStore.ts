@@ -6,10 +6,12 @@ import axios from "axios";
 interface AnimeStoreState {
   recommended: AnimeList[] | null;
   catalog: AnimeList[] | null;
+  currentAnime: AnimeList | null;
   loading: boolean;
   error: boolean;
   fetchAnimeList: () => Promise<void>;
   fetchCatalogReleases: () => Promise<void>;
+  fetchCurrentAnime: (id: string) => Promise<void>;
 }
 
 export const useAnimeStore = create<AnimeStoreState>((set) => ({
@@ -17,6 +19,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
   catalog: null,
   loading: false,
   error: false,
+  currentAnime: null,
 
   fetchAnimeList: async () => {
     set({ loading: true, error: false });
@@ -53,5 +56,16 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
       set({ loading: false, error: true });
       console.error("Error fetching anime:", error);
     }
+  },
+  fetchCurrentAnime: async (id: string) => {
+    try {
+      const response = await axios.get(`${baseUrl}/anime/releases/${id}`, {
+        params: {
+          include: "id,name,poster,description",
+        },
+      });
+
+      set({ currentAnime: response.data });
+    } catch (error) {}
   },
 }));
