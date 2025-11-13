@@ -1,4 +1,3 @@
-import styles from "@/app/styles.module.scss";
 import {
   Carousel,
   CarouselContent,
@@ -7,7 +6,7 @@ import {
 import { AnimeItem } from "@/components/anime-item";
 import { AnimeList } from "@/app/types/anime.types";
 import { FC } from "react";
-
+import styles from "./style.module.scss";
 interface AnimeListProps {
   titles: AnimeList[] | null;
   loading?: boolean;

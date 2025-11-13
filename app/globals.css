@@ -42,10 +42,10 @@
 }
 
 body {
-  background: var(--foreground);
-  font-family: 'Roboto', sans-serif;
+    position: relative;
+    background: var(--foreground);
+    font-family: 'Roboto', sans-serif;
 }
-
 :root {
   --radius: 0.625rem;
   --card: oklch(1 0 0);

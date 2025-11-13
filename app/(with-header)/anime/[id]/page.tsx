@@ -1,5 +1,6 @@
-import { Header } from "@/components/header";
 import { AnimeCard } from "@/components/anime-card";
+import styles from "./style.module.scss";
+import { Container } from "@/components/container";
 
 export default async function Page({
   params,
@@ -9,10 +10,12 @@ export default async function Page({
   };
 }) {
   const { id } = await params;
+
   return (
-    <div>
-      <Header />
-      <AnimeCard id={id} />
+    <div className={styles.animePage}>
+      <Container>
+        <AnimeCard id={id} />
+      </Container>
     </div>
   );
 }
