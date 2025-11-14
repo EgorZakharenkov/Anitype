@@ -1,7 +1,8 @@
 import { create } from "zustand";
-import { AnimeList, AnimeListCatalog } from "@/app/types/anime.types";
-import { baseUrl } from "@/app/constants";
+
 import axios from "axios";
+import { AnimeList, AnimeListCatalog } from "@/types/anime.types";
+import { baseUrl } from "@/constants";
 
 interface AnimeStoreState {
   recommended: AnimeList[] | null;

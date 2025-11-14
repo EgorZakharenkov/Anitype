@@ -10,7 +10,6 @@ export default async function Page({
   };
 }) {
   const { id } = await params;
-
   return (
     <div className={styles.animePage}>
       <Container>

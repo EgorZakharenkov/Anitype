@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { LeafIcon } from "@/components/icons/leaf";
 
 const SNOWFLAKES_DATA = [
@@ -24,17 +23,7 @@ const SNOWFLAKES_DATA = [
   },
 ];
 
-export const FallingSnowflakes = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
-
+const FallingSnowflakes = () => {
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-50">
       {SNOWFLAKES_DATA.map(({ id, x, delay, duration, rotate, size, left }) => (
@@ -69,3 +58,5 @@ export const FallingSnowflakes = () => {
     </div>
   );
 };
+
+export default FallingSnowflakes;

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
-import { FallingSnowflakes } from "@/components/falling-leaves";
-
 const geistRobo = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
@@ -21,10 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={geistRobo.className}>
-        {children}
-        <FallingSnowflakes />
-      </body>
+      <body className={geistRobo.className}>{children}</body>
     </html>
   );
 }

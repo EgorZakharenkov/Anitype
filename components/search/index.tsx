@@ -5,7 +5,7 @@ import { FC, SetStateAction, useState } from "react";
 import { SearchIcon } from "@/components/icons/search";
 import { Input } from "@/components/ui/input";
 import styles from "./style.module.scss";
-import { useOutside } from "@/app/utils/hooks/useOutside";
+import { useOutside } from "@/utils/hooks/useOutside";
 
 interface SearchProps {
   value?: string;

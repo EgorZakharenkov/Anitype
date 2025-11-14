@@ -7,29 +7,25 @@ import { ProfileIcon } from "@/components/icons/profile";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useNavigationStore } from "@/stores/navigationStore";
+import { useEffect } from "react";
 
 export const Header = () => {
-  const links = [
-    {
-      label: "Для вас",
-      path: "/",
-    },
-    {
-      label: "Библиотека",
-      path: "/libary",
-    },
-    {
-      label: "Скачать приложение",
-      path: "/download",
-    },
-  ];
+  const { navItems, clearNavItems } = useNavigationStore();
   const pathName = usePathname();
+
+  useEffect(() => {
+    if (pathName === "/") {
+      clearNavItems();
+    }
+  }, []);
+
   return (
     <header className={styles.header}>
       <div className={styles.links}>
-        {links.map(({ label, path }) => (
-          <Link key={label} href={path}>
-            <Button isActive={pathName === path}>{label}</Button>
+        {navItems.map(({ label, href, id }) => (
+          <Link key={id} href={href}>
+            <Button isActive={pathName === href}>{label}</Button>
           </Link>
         ))}
       </div>

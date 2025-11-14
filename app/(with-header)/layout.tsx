@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { ReactNode } from "react";
+import { FallingLeavesClient } from "@/components/falling-leaves/falling-leaves-client";
 
 export default function LayoutWithHeader({
   children,
@@ -8,6 +9,7 @@ export default function LayoutWithHeader({
     <div>
       <Header />
       {children}
+      <FallingLeavesClient />
     </div>
   );
 }

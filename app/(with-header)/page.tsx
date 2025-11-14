@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import background from "../assets/bgImage.svg";
+import background from "../../assets/bgImage.svg";
 import styles from "./styles.module.scss";
 import { InfoAnime } from "@/components/info-anime";
 import { useEffect } from "react";
-import { useAnimeStore } from "@/app/stores/animeStore";
 import { ListAnime } from "@/components/anime-list";
 import { Container } from "@/components/container";
+import { useAnimeStore } from "@/stores/animeStore";
 
 export default function Home() {
   const {
