@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { ListAnime } from "@/components/anime-list";
 import { Container } from "@/components/container";
 import { useAnimeStore } from "@/stores/animeStore";
+import { useNavigationStore } from "@/stores/navigationStore";
 
 export default function Home() {
   const {
@@ -18,9 +19,11 @@ export default function Home() {
     error,
     fetchCatalogReleases,
   } = useAnimeStore();
+  const { clearNavItems } = useNavigationStore();
   useEffect(() => {
     fetchAnimeList();
     fetchCatalogReleases();
+    clearNavItems();
   }, []);
 
   return (
