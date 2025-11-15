@@ -8,17 +8,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useNavigationStore } from "@/stores/navigationStore";
-import { useEffect } from "react";
 
 export const Header = () => {
-  const { navItems, clearNavItems } = useNavigationStore();
+  const { navItems } = useNavigationStore();
   const pathName = usePathname();
-
-  useEffect(() => {
-    if (pathName === "/") {
-      clearNavItems();
-    }
-  }, []);
 
   return (
     <header className={styles.header}>

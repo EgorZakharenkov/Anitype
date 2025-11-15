@@ -17,10 +17,28 @@ export const useNavigationStore = create<NavigationStoreState>((set, get) => ({
     { id: "library", label: "Библиотека", href: "/library" },
     { id: "download", label: "Скачать приложение", href: "/download" },
   ],
-  addNavItem: (item: NavItem) => {
-    set((state) => ({
-      navItems: [...state.navItems, item],
-    }));
+  addNavItem: (item) => {
+    set((state) => {
+      const filteredItems = state.navItems.filter(
+        (navItem) => navItem.href !== item.href,
+      );
+
+      const newItems = [...filteredItems, { ...item }];
+      if (newItems.length > 5) {
+        const basicItems = newItems.filter((item) =>
+          ["home", "library", "download"].includes(item.id),
+        );
+        const dynamicItems = newItems.filter(
+          (item) => !["home", "library", "download"].includes(item.id),
+        );
+
+        return {
+          navItems: [...basicItems, ...dynamicItems.slice(-2)],
+        };
+      }
+
+      return { navItems: newItems };
+    });
   },
   removeNavItem: (id: string) => {
     set((state) => ({
