@@ -6,27 +6,15 @@ import { useAnimeStore } from "@/stores/animeStore";
 import Image from "next/image";
 import { imageUrl } from "@/constants";
 import { Button } from "@/components/ui/button";
-import { useNavigationStore } from "@/stores/navigationStore";
 interface AnimeCard {
   id: string;
 }
 
 export const AnimeCard: FC<AnimeCard> = ({ id }) => {
   const { fetchCurrentAnime, currentAnime } = useAnimeStore();
-  const { addNavItem } = useNavigationStore();
   useEffect(() => {
     fetchCurrentAnime(id);
   }, []);
-
-  useEffect(() => {
-    if (currentAnime) {
-      addNavItem({
-        id: currentAnime.name.main,
-        href: `anime/${currentAnime.id}`,
-        label: currentAnime.name.main,
-      });
-    }
-  }, [currentAnime]);
 
   return (
     <div className={styles.card}>
