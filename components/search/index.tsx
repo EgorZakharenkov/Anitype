@@ -4,8 +4,8 @@ import { FC, SetStateAction, useState } from "react";
 
 import { SearchIcon } from "@/components/icons/search";
 import { Input } from "@/components/ui/input";
-import styles from "./style.module.scss";
 import { useOutside } from "@/utils/hooks/useOutside";
+import { Ellipse } from "@/components/ui/ellipse";
 
 interface SearchProps {
   value?: string;
@@ -27,7 +27,7 @@ export const Search: FC<SearchProps> = ({}) => {
   };
   return (
     <div ref={outsideClick} onClick={handleClick}>
-      <div className={`${styles.search} ${open && styles.open}`}>
+      <Ellipse isOpen={open}>
         {open && (
           <Input
             value={value}
@@ -36,7 +36,7 @@ export const Search: FC<SearchProps> = ({}) => {
           />
         )}
         <SearchIcon />
-      </div>
+      </Ellipse>
     </div>
   );
 };

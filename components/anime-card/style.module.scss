@@ -1,5 +1,12 @@
 .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .wrapperCard {
+
+  }
   h1 {
-    color: #ffffff;
+    color: var(--white);
   }
 }

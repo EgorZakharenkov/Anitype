@@ -2,7 +2,7 @@
   padding: 10px 20px;
   border-radius: 30px;
   background: transparent;
-  color: #fff;
+  color: var(--white);
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
@@ -11,18 +11,18 @@
 
 
   &:hover {
-    background: #fff;
-    color: #000;
+    background: var(--white);
+    color: var(--black);
   }
 }
 
 .secondary {
-  background: #2C2930;
-  color: #DDDDDD;
+  background: var(--gray);
+  color: var(--white);
 }
 
 .active {
-  background: #fff;
-  color: #000;
+  background: var(--white);
+  color: var(--black);
   padding: 10px 30px;
 }

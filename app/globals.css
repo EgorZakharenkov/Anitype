@@ -47,6 +47,9 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 :root {
+    --white:#fff;
+    --black:#000;
+    --gray: #2C2930;
   --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.147 0.004 49.25);

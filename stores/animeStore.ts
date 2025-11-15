@@ -44,7 +44,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
   fetchCatalogReleases: async () => {
     try {
       const response = await axios.get<AnimeListCatalog>(
-        `${baseUrl}/anime/catalog/releases`,
+        `${baseUrl}/anime/releases/latest`,
         {
           params: {
             limit: 14,
