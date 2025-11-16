@@ -1,8 +1,8 @@
 export interface AnimeList {
   id: number;
-  year: number;
   name: {
     main: string;
+    english: string;
   };
   poster: {
     preview: string;
@@ -13,6 +13,11 @@ export interface AnimeList {
     };
   };
   description: string;
+  year: string;
+  genres: {
+    name: string;
+  }[];
+  episodes_total: string;
 }
 
 export interface AnimeListCatalog {

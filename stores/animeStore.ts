@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 import axios from "axios";
-import { AnimeList, AnimeListCatalog } from "@/types/anime.types";
+import { AnimeList } from "@/types/anime.types";
 import { baseUrl } from "@/constants";
 
 interface AnimeStoreState {
@@ -43,8 +43,8 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
   },
   fetchCatalogReleases: async () => {
     try {
-      const response = await axios.get<AnimeListCatalog>(
-        `${baseUrl}/anime/releases/latest`,
+      const response = await axios.get<AnimeList[]>(
+        `${baseUrl}/anime/releases/random`,
         {
           params: {
             limit: 14,
@@ -52,7 +52,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
           },
         },
       );
-      set({ catalog: response.data.data, loading: false, error: false });
+      set({ catalog: response.data, loading: false, error: false });
     } catch (error) {
       set({ loading: false, error: true });
       console.error("Error fetching anime:", error);
@@ -62,7 +62,8 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
     try {
       const response = await axios.get(`${baseUrl}/anime/releases/${id}`, {
         params: {
-          include: "id,name,poster,description",
+          include:
+            "id,name,poster,description,episodes,year,episodes_total,genres.name",
         },
       });
 

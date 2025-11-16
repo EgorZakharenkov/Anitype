@@ -27,7 +27,6 @@ export const AnimeItem: FC<AnimeItemProps> = ({
 
   const handleCLick = () => {
     addNavItem({
-      id: name,
       href: `/anime/${id}`,
       label: name,
     });
