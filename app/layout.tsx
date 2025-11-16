@@ -1,22 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
-import { FallingSnowflakes } from "@/components/falling-leaves";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 const geistRobo = Roboto({
-  variable: "--font-geist-roboto",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,13 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${geistRobo.variable} antialiased `}
-      >
-        {children}
-
-        <FallingSnowflakes />
-      </body>
+      <body className={geistRobo.className}>{children}</body>
     </html>
   );
 }

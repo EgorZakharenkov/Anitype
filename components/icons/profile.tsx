@@ -15,7 +15,7 @@ export const ProfileIcon = () => {
           x="0.000000"
           y="0.000000"
           fill="transparent"
-          fill-opacity="0"
+          fillOpacity="0"
         />
         <circle
           id="Ellipse 11"
@@ -28,7 +28,7 @@ export const ProfileIcon = () => {
           id="Subtract"
           d="M30.2707 31.3761C30.185 25.0793 25.0539 20.0013 18.7368 20.0013C12.4197 20.0013 7.2886 25.0793 7.20288 31.3761L30.2707 31.3761Z"
           fill="currentColor"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         />
       </g>
     </svg>

@@ -1,0 +1,12 @@
+.home {
+  display: flex;
+  flex-direction: column;
+
+}
+.bgImage {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+}
+

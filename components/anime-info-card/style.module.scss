@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .name {
+      width: 150px;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .value {
+      color: var(--white);
+      font-size: 14px;
+    }
+  }
+}

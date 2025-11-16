@@ -1,4 +1,3 @@
-import styles from "@/app/styles.module.scss";
 import {
   Carousel,
   CarouselContent,
@@ -7,7 +6,7 @@ import {
 import { AnimeItem } from "@/components/anime-item";
 import { AnimeList } from "@/app/types/anime.types";
 import { FC } from "react";
-
+import styles from "./style.module.scss";
 interface AnimeListProps {
   titles: AnimeList[] | null;
   loading?: boolean;
@@ -23,14 +22,15 @@ export const ListAnime: FC<AnimeListProps> = ({ error, titles, title }) => {
       <Carousel>
         <CarouselContent>
           {titles ? (
-            titles.map((anime) => (
-              <CarouselItem className="lg:basis-1/6" key={anime.id}>
+            titles.map(({ id, name, poster, description }) => (
+              <CarouselItem className="lg:basis-1/6" key={id}>
                 <AnimeItem
-                  key={anime.id}
-                  name={anime.name.main}
+                  id={id}
+                  key={id}
+                  name={name.main}
                   rating={"5,90"}
-                  image={anime.poster.preview}
-                  description={anime.description}
+                  image={poster.preview}
+                  description={description}
                 />
               </CarouselItem>
             ))
