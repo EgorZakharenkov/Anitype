@@ -1,4 +1,7 @@
-export default function Page({
+import { Container } from "@/components/container";
+import { VideoCard } from "@/components/video-player/video-card";
+
+export default async function Page({
   params,
 }: {
   params: {
@@ -6,5 +9,9 @@ export default function Page({
   };
 }) {
   const { id } = await params;
-  return <div></div>;
+  return (
+    <Container>
+      <VideoCard id={id} />
+    </Container>
+  );
 }
