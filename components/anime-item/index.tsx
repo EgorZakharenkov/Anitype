@@ -12,7 +12,7 @@ interface AnimeItemProps {
   description?: string;
 }
 
-export const AnimeItem: FC<AnimeItemProps> = ({
+export const AnimeListItem: FC<AnimeItemProps> = ({
   id,
   name,
   rating,

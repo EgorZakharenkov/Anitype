@@ -71,4 +71,21 @@
   h1 {
     color: var(--white);
   }
+
+  .wrapperVideo {
+    display: flex;
+    gap: 30px;
+  }
+
+  .episodes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+.open {
+  flex-direction: column;
+  height: 100%;
+  gap: 30px;
 }

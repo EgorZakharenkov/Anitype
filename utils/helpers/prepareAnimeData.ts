@@ -1,6 +1,6 @@
-import { AnimeList } from "@/types/anime.types";
+import { AnimeItem } from "@/types/anime.types";
 
-export const prepareAnimeData = (animeData: AnimeList) => {
+export const prepareAnimeData = (animeData: AnimeItem) => {
   return [
     {
       key: "Оригинальное название",

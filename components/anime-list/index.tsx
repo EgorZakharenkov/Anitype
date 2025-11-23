@@ -3,12 +3,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { AnimeItem } from "@/components/anime-item";
-import { AnimeList } from "@/app/types/anime.types";
+import { AnimeListItem } from "@/components/anime-item";
 import { FC } from "react";
 import styles from "./style.module.scss";
+import { AnimeItem } from "@/types/anime.types";
 interface AnimeListProps {
-  titles: AnimeList[] | null;
+  titles: AnimeItem[] | null;
   loading?: boolean;
   error: boolean;
   title: string;
@@ -24,7 +24,7 @@ export const ListAnime: FC<AnimeListProps> = ({ error, titles, title }) => {
           {titles ? (
             titles.map(({ id, name, poster, description }) => (
               <CarouselItem className="lg:basis-1/6" key={id}>
-                <AnimeItem
+                <AnimeListItem
                   id={id}
                   key={id}
                   name={name.main}

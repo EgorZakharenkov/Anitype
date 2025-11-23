@@ -8,6 +8,7 @@ import { imageUrl } from "@/constants";
 import { Button } from "@/components/ui/button";
 import { AnimeInfoCard } from "@/components/anime-info-card";
 import { prepareAnimeData } from "@/utils/helpers/prepareAnimeData";
+import { VideoPlayer } from "@/components/video-player";
 interface AnimeCard {
   id: string;
 }
@@ -20,11 +21,11 @@ export const AnimeCard: FC<AnimeCard> = ({ id }) => {
   }, []);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpen(!open);
   };
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${open && styles.open}`}>
       {currentAnime ? (
         <>
           <Image
@@ -49,7 +50,7 @@ export const AnimeCard: FC<AnimeCard> = ({ id }) => {
               <p className={styles.description}>{currentAnime.description}</p>
               <div className={styles.btns}>
                 <Button handleClick={handleClickOpen} isActive>
-                  Смотреть
+                  {open ? "Закрыть" : "Смотреть"}
                 </Button>
               </div>
               <div className={styles.info}>
@@ -58,7 +59,10 @@ export const AnimeCard: FC<AnimeCard> = ({ id }) => {
               </div>
             </div>
           </div>
-          <div className={styles.player}></div>
+          {}
+          {currentAnime.episodes[0].hls_720 && open && (
+            <VideoPlayer src={currentAnime.episodes[0].hls_720} />
+          )}
         </>
       ) : (
         <h1>Загрузка...</h1>
