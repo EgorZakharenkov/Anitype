@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { AnimeInfoCard } from "@/components/anime-info-card";
 import { prepareAnimeData } from "@/utils/helpers/prepareAnimeData";
 import Link from "next/link";
+import { useNavigationStore } from "@/stores/navigationStore";
 
 interface AnimeCard {
   id: string;
@@ -16,10 +17,17 @@ interface AnimeCard {
 
 export const AnimeCard: FC<AnimeCard> = ({ id }) => {
   const { fetchCurrentAnime, currentAnime } = useAnimeStore();
-
+  const { addNavItem } = useNavigationStore();
   useEffect(() => {
     fetchCurrentAnime(id);
   }, []);
+
+  const handleCLick = (id: string, name: string) => () => {
+    addNavItem({
+      href: `/video/${id}`,
+      label: name,
+    });
+  };
 
   return (
     <div>
@@ -48,7 +56,12 @@ export const AnimeCard: FC<AnimeCard> = ({ id }) => {
                 <p className={styles.description}>{currentAnime.description}</p>
                 <div className={styles.btns}>
                   <Link href={`/video/${currentAnime.id}`}>
-                    <Button isActive>Смотреть</Button>
+                    <Button
+                      handleClick={handleCLick(id, currentAnime.name.main)}
+                      isActive
+                    >
+                      Смотреть
+                    </Button>
                   </Link>
                 </div>
                 <div className={styles.info}>

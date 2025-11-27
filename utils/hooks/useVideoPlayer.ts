@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { PlayerState } from "@/types/video";
+import { PlayerState } from "@/types/video.types";
 
 export const useVideoPlayer = () => {
   const videoRef = useRef<HTMLVideoElement>(null);

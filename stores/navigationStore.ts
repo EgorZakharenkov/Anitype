@@ -29,7 +29,7 @@ export const useNavigationStore = create<NavigationStore>()(
 
         set((state) => {
           const filteredItems = state.navItems.filter(
-            (navItem) => navItem.href !== item.href,
+            (navItem) => navItem.label !== item.label,
           );
           return {
             navItems: [...filteredItems, { ...item, id }],
