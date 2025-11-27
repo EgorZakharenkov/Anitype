@@ -3,9 +3,9 @@
 import Image from "next/image";
 import background from "../../assets/bgImage.svg";
 import styles from "./styles.module.scss";
-import { InfoAnime } from "@/components/info-anime";
+import { BannerInfo } from "@/components/anime-components/banner-info";
 import { useEffect } from "react";
-import { ListAnime } from "@/components/anime-list";
+import { ListAnime } from "@/components/anime-components/anime-list";
 import { Container } from "@/components/container";
 import { useAnimeStore } from "@/stores/animeStore";
 import { useNavigationStore } from "@/stores/navigationStore";
@@ -30,7 +30,7 @@ export default function Home() {
     <div className={styles.home}>
       <Image className={styles.bgImage} src={background} alt={"background"} />
       <Container>
-        <InfoAnime title={"Монолог фармацевта"} />
+        <BannerInfo title={"Монолог фармацевта"} />
         <ListAnime
           titles={recommended}
           loading={loading}

@@ -1,4 +1,4 @@
-import { AnimeCard } from "@/components/anime-card";
+import { AnimeCard } from "@/components/anime-components/anime-card";
 import { Container } from "@/components/container";
 
 export default async function Page({

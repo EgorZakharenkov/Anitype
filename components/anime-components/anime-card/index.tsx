@@ -6,7 +6,7 @@ import { useAnimeStore } from "@/stores/animeStore";
 import Image from "next/image";
 import { imageUrl } from "@/constants";
 import { Button } from "@/components/ui/button";
-import { AnimeInfoCard } from "@/components/anime-info-card";
+import { AboutAnimeCard } from "@/components/anime-components/about-anime-card";
 import { prepareAnimeData } from "@/utils/helpers/prepareAnimeData";
 import Link from "next/link";
 import { useNavigationStore } from "@/stores/navigationStore";
@@ -64,9 +64,9 @@ export const AnimeCard: FC<AnimeCard> = ({ id }) => {
                     </Button>
                   </Link>
                 </div>
-                <div className={styles.info}>
+                <div className={styles.about}>
                   <h3>О сериале</h3>
-                  <AnimeInfoCard data={prepareAnimeData(currentAnime)} />
+                  <AboutAnimeCard data={prepareAnimeData(currentAnime)} />
                 </div>
               </div>
             </div>

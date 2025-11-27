@@ -1,14 +1,14 @@
 import { FC } from "react";
 import styles from "./style.module.scss";
 import { formatValue } from "@/utils/helpers/formatValue";
-interface AnimeInfoCardProps {
+interface AboutAnimeCardProps {
   data: {
     key: string;
     value: string | number | string[];
   }[];
 }
 
-export const AnimeInfoCard: FC<AnimeInfoCardProps> = ({ data }) => {
+export const AboutAnimeCard: FC<AboutAnimeCardProps> = ({ data }) => {
   return (
     <div className={styles.list}>
       {data.map(({ key, value }) => (

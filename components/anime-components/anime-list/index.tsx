@@ -3,7 +3,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { AnimeListItem } from "@/components/anime-item";
+import { AnimeListItem } from "@/components/anime-components/anime-item";
 import { FC } from "react";
 import styles from "./style.module.scss";
 import { AnimeItem } from "@/types/anime.types";
