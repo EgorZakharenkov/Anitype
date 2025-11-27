@@ -1,5 +1,4 @@
-// hooks/useVideoPlayer.ts
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { PlayerState } from "@/types/video";
 
 export const useVideoPlayer = () => {
@@ -92,7 +91,6 @@ export const useVideoPlayer = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   }, []);
 
-  // Обработчики событий видео
   const handleTimeUpdate = useCallback(() => {
     if (!videoRef.current) return;
 

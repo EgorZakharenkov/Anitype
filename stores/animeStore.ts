@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
 import axios from "axios";
-import { AnimeList } from "@/types/anime.types";
+import { AnimeItem } from "@/types/anime.types";
 import { baseUrl } from "@/constants";
 
 interface AnimeStoreState {
-  recommended: AnimeList[] | null;
-  catalog: AnimeList[] | null;
-  currentAnime: AnimeList | null;
+  recommended: AnimeItem[] | null;
+  catalog: AnimeItem[] | null;
+  currentAnime: AnimeItem | null;
   loading: boolean;
   error: boolean;
   fetchAnimeList: () => Promise<void>;
@@ -25,7 +25,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
   fetchAnimeList: async () => {
     set({ loading: true, error: false });
     try {
-      const response = await axios.get<AnimeList[]>(
+      const response = await axios.get<AnimeItem[]>(
         `${baseUrl}/anime/releases/recommended`,
         {
           params: {
@@ -43,7 +43,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
   },
   fetchCatalogReleases: async () => {
     try {
-      const response = await axios.get<AnimeList[]>(
+      const response = await axios.get<AnimeItem[]>(
         `${baseUrl}/anime/releases/random`,
         {
           params: {

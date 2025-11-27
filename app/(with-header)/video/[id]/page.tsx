@@ -1,5 +1,5 @@
-import { AnimeCard } from "@/components/anime-card";
 import { Container } from "@/components/container";
+import { VideoCard } from "@/components/video-player/video-card";
 
 export default async function Page({
   params,
@@ -11,7 +11,7 @@ export default async function Page({
   const { id } = await params;
   return (
     <Container>
-      <AnimeCard id={id} />
+      <VideoCard id={id} />
     </Container>
   );
 }
