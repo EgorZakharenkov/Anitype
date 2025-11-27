@@ -9,6 +9,7 @@ interface VideoPlayerProps {
 
 export const VideoPlayer: FC<VideoPlayerProps> = ({ src }) => {
   const { playerState, setPlayerState, playerRef, videoRef } = useVideoPlayer();
+
   return (
     <div ref={playerRef}>
       <video ref={videoRef} src={src} controls></video>
