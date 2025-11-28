@@ -7,32 +7,44 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Episode } from "@/types/anime.types";
+
+export interface SelectOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
 
 interface CustomSelectProps {
-  options: Episode[];
-  handleChange: (value: string) => void;
+  options: SelectOption[];
+  value?: string;
+  onValueChange: (value: string) => void;
   placeholder?: string;
+  className?: string;
+  disabled?: boolean;
 }
 
 export const CustomSelect: FC<CustomSelectProps> = ({
   options,
-  handleChange,
-  placeholder,
+  value,
+  onValueChange,
+  placeholder = "Выберите опцию",
+  className = "w-[200px] text-white",
+  disabled = false,
 }) => {
   return (
-    <Select onValueChange={handleChange}>
-      <SelectTrigger className="w-[200px] text-white">
+    <Select value={value} onValueChange={onValueChange} disabled={disabled}>
+      <SelectTrigger className={className}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {options.map((episode, index) => (
+          {options.map((option) => (
             <SelectItem
-              key={episode.id}
-              value={episode.hls_720 ? episode.hls_720 : ""}
+              key={option.value}
+              value={option.value}
+              disabled={option.disabled}
             >
-              {episode.name ? episode.name : index + 1 + " Серия"}
+              {option.label}
             </SelectItem>
           ))}
         </SelectGroup>

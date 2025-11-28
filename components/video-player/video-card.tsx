@@ -1,10 +1,14 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useMemo } from "react";
 import { useAnimeStore } from "@/stores/animeStore";
 import { VideoPlayer } from "@/components/video-player/index";
 import styles from "./styles.module.scss";
 import { CustomSelect } from "@/components/ui/custom-select";
+import {
+  episodeToSelectOptions,
+  qualitiesToSelectOptions,
+} from "@/utils/helpers/selectHelprer";
 
 interface VideoCardProps {
   id: string;
@@ -12,25 +16,58 @@ interface VideoCardProps {
 
 export const VideoCard: FC<VideoCardProps> = ({ id }) => {
   const { fetchCurrentAnime, currentAnime } = useAnimeStore();
-  const [episode, setEpisode] = useState<string>(
-    currentAnime?.episodes[0].hls_720 || "",
-  );
+  const [selectedEpisodeIndex, setSelectedEpisodeIndex] = useState<number>(0);
+  const [selectedQuality, setSelectedQuality] = useState<string>("720p");
+
+  const videoUrl = useMemo(() => {
+    const episode = currentAnime?.episodes[selectedEpisodeIndex];
+    if (!episode) return "";
+
+    switch (selectedQuality) {
+      case "480p":
+        return episode.hls_480 || "";
+      case "720p":
+        return episode.hls_720 || "";
+      case "1080p":
+        return episode.hls_1080 || "";
+      default:
+        return episode.hls_720 || "";
+    }
+  }, [currentAnime, selectedEpisodeIndex, selectedQuality]);
+
+  const currentEpisode = currentAnime?.episodes[selectedEpisodeIndex];
 
   useEffect(() => {
     fetchCurrentAnime(id);
-  }, []);
+  }, [id, fetchCurrentAnime]);
 
-  const handleChange = (value: string) => {
-    setEpisode(value);
+  const handleEpisodeChange = (value: string) => {
+    const episodeIndex = parseInt(value);
+    setSelectedEpisodeIndex(episodeIndex);
   };
+
+  const handleQualityChange = (value: string) => {
+    setSelectedQuality(value);
+  };
+
   return (
     <div className={styles.videoCard}>
-      {episode && <VideoPlayer src={episode} />}
+      {videoUrl && <VideoPlayer src={videoUrl} />}
       <div className={styles.settings}>
-        {currentAnime?.episodes && (
+        {currentAnime && (
           <CustomSelect
-            options={currentAnime.episodes}
-            handleChange={handleChange}
+            options={episodeToSelectOptions(currentAnime.episodes)}
+            value={selectedEpisodeIndex.toString()}
+            onValueChange={handleEpisodeChange}
+            placeholder="Выберите серию"
+          />
+        )}
+        {currentEpisode && (
+          <CustomSelect
+            options={qualitiesToSelectOptions(currentEpisode)}
+            value={selectedQuality}
+            onValueChange={handleQualityChange}
+            placeholder="Качество"
           />
         )}
       </div>
