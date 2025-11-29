@@ -7,6 +7,7 @@ import { AnimeListItem } from "@/components/anime-components/anime-item";
 import { FC } from "react";
 import styles from "./style.module.scss";
 import { AnimeItem } from "@/types/anime.types";
+
 interface AnimeListProps {
   titles: AnimeItem[] | null;
   loading?: boolean;

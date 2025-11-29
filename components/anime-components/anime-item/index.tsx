@@ -31,7 +31,6 @@ export const AnimeListItem: FC<AnimeItemProps> = ({
       label: name,
     });
   };
-
   return (
     <Link onClick={handleCLick} href={`/anime/${id}`} className={styles.anime}>
       <span className={styles.rating}>{rating}</span>
