@@ -11,7 +11,7 @@ interface PlayerState {
   togglePlay: (value: boolean) => void;
 }
 
-export const usePlayerStore = create<PlayerState>((set) => ({
+export const playerStore = create<PlayerState>((set) => ({
   isPlaying: false,
   volume: 1,
   fullscreen: false,

@@ -9,6 +9,7 @@ import {
   episodeToSelectOptions,
   qualitiesToSelectOptions,
 } from "@/utils/helpers/selectHelprer";
+import { useEpisodeStore } from "@/stores/episodeStore";
 
 interface VideoCardProps {
   id: string;
@@ -16,11 +17,11 @@ interface VideoCardProps {
 
 export const VideoCard: FC<VideoCardProps> = ({ id }) => {
   const { fetchCurrentAnime, currentAnime } = useAnimeStore();
-  const [selectedEpisodeIndex, setSelectedEpisodeIndex] = useState<number>(0);
+  const { currentEpisodeIndex, changeCurrentEpisode } = useEpisodeStore();
   const [selectedQuality, setSelectedQuality] = useState<string>("720p");
 
   const videoUrl = useMemo(() => {
-    const episode = currentAnime?.episodes[selectedEpisodeIndex];
+    const episode = currentAnime?.episodes[currentEpisodeIndex];
     if (!episode) return "";
 
     switch (selectedQuality) {
@@ -33,9 +34,9 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
       default:
         return episode.hls_720 || "";
     }
-  }, [currentAnime, selectedEpisodeIndex, selectedQuality]);
+  }, [currentAnime, currentEpisodeIndex, selectedQuality]);
 
-  const currentEpisode = currentAnime?.episodes[selectedEpisodeIndex];
+  const currentEpisode = currentAnime?.episodes[currentEpisodeIndex];
 
   useEffect(() => {
     fetchCurrentAnime(id);
@@ -43,7 +44,7 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
 
   const handleEpisodeChange = (value: string) => {
     const episodeIndex = parseInt(value);
-    setSelectedEpisodeIndex(episodeIndex);
+    changeCurrentEpisode(episodeIndex);
   };
 
   const handleQualityChange = (value: string) => {
@@ -57,7 +58,7 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
         {currentAnime && (
           <CustomSelect
             options={episodeToSelectOptions(currentAnime.episodes)}
-            value={selectedEpisodeIndex.toString()}
+            value={currentEpisodeIndex.toString()}
             onValueChange={handleEpisodeChange}
             placeholder="Выберите серию"
           />
