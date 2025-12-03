@@ -44,10 +44,10 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
   fetchCatalogReleases: async () => {
     try {
       const response = await axios.get<AnimeItem[]>(
-        `${baseUrl}/anime/releases/random`,
+        `${baseUrl}/anime/releases/latest`,
         {
           params: {
-            limit: 14,
+            limit: 4,
             include: "id,name,poster,description",
           },
         },

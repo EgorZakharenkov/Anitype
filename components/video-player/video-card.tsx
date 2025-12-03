@@ -17,11 +17,12 @@ interface VideoCardProps {
 
 export const VideoCard: FC<VideoCardProps> = ({ id }) => {
   const { fetchCurrentAnime, currentAnime } = useAnimeStore();
-  const { currentEpisodeIndex, changeCurrentEpisode } = useEpisodeStore();
+  const { getEpisodeIndex, changeCurrentEpisode } = useEpisodeStore();
   const [selectedQuality, setSelectedQuality] = useState<string>("720p");
-
+  const [currentAnimeEpisodeIndex, setCurrentAnimeEpisodeIndex] =
+    useState<number>(getEpisodeIndex(id));
   const videoUrl = useMemo(() => {
-    const episode = currentAnime?.episodes[currentEpisodeIndex];
+    const episode = currentAnime?.episodes[currentAnimeEpisodeIndex];
     if (!episode) return "";
 
     switch (selectedQuality) {
@@ -34,9 +35,9 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
       default:
         return episode.hls_720 || "";
     }
-  }, [currentAnime, currentEpisodeIndex, selectedQuality]);
+  }, [currentAnime, currentAnimeEpisodeIndex, selectedQuality]);
 
-  const currentEpisode = currentAnime?.episodes[currentEpisodeIndex];
+  const currentEpisode = currentAnime?.episodes[currentAnimeEpisodeIndex];
 
   useEffect(() => {
     fetchCurrentAnime(id);
@@ -44,7 +45,8 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
 
   const handleEpisodeChange = (value: string) => {
     const episodeIndex = parseInt(value);
-    changeCurrentEpisode(episodeIndex);
+    changeCurrentEpisode({ id: id, episodeIndex });
+    setCurrentAnimeEpisodeIndex(episodeIndex);
   };
 
   const handleQualityChange = (value: string) => {
@@ -58,7 +60,7 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
         {currentAnime && (
           <CustomSelect
             options={episodeToSelectOptions(currentAnime.episodes)}
-            value={currentEpisodeIndex.toString()}
+            value={currentAnimeEpisodeIndex.toString()}
             onValueChange={handleEpisodeChange}
             placeholder="Выберите серию"
           />
