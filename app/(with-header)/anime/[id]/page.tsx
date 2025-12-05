@@ -1,5 +1,5 @@
-import { AnimeCard } from "@/components/anime-components/anime-card";
-import { Container } from "@/components/container";
+import { Container } from "@/components/layout/Container";
+import { AnimeCard } from "@/components/anime/AnimeCard";
 
 export default async function Page({
   params,

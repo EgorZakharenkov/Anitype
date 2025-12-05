@@ -5,11 +5,12 @@ import styles from "./style.module.scss";
 import { useAnimeStore } from "@/stores/animeStore";
 import Image from "next/image";
 import { imageUrl } from "@/constants";
-import { Button } from "@/components/ui/button";
-import { AboutAnimeCard } from "@/components/anime-components/about-anime-card";
-import { prepareAnimeData } from "@/utils/helpers/prepareAnimeData";
+
 import Link from "next/link";
 import { useNavigationStore } from "@/stores/navigationStore";
+import { AboutAnimeCard } from "@/components/anime/AboutAnimeCard";
+import { prepareAnimeData } from "@/lib/helpers/prepareAnimeData";
+import { Button } from "@/components/ui/Button";
 
 interface AnimeCard {
   id: string;

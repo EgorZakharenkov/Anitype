@@ -1,5 +1,5 @@
-import { Container } from "@/components/container";
-import { VideoCard } from "@/components/video-player/video-card";
+import { Container } from "@/components/layout/Container";
+import { VideoCard } from "@/components/video/VideoCard/video-card";
 
 export default async function Page({
   params,

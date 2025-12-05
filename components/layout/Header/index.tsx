@@ -1,13 +1,14 @@
 "use client";
 
 import styles from "./style.module.scss";
-import { Search } from "@/components/search";
-import { Ellipse } from "@/components/ui/ellipse";
-import { ProfileIcon } from "@/components/icons/profile";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { useNavigationStore } from "@/stores/navigationStore";
+import { Button } from "@/components/ui/Button";
+import { Search } from "@/components/shared/Search";
+import { Ellipse } from "@/components/ui/Ellipse";
+import { ProfileIcon } from "@/components/shared/icons/profile";
 
 export const Header = () => {
   const { navItems } = useNavigationStore();

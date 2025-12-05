@@ -1,5 +1,5 @@
 import { Episode } from "@/types/anime.types";
-import { SelectOption } from "@/components/ui/custom-select";
+import { SelectOption } from "@/components/ui/CustomSelect";
 
 export const episodeToSelectOptions = (episodes: Episode[]): SelectOption[] => {
   return episodes.map((episode, index) => ({

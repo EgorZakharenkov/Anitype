@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { LeafIcon } from "@/components/icons/leaf";
+import { LeafIcon } from "@/components/shared/icons/leaf";
 
 const SNOWFLAKES_DATA = [
   { id: 1, left: 8, delay: 0, duration: 22, x: 25, size: 16, rotate: 360 },

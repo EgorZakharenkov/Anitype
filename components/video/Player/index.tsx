@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
-import { useVideoPlayer } from "@/utils/hooks/useVideoPlayer";
-import styles from "./styles.module.scss";
+import styles from "../styles.module.scss";
+import { useVideoPlayer } from "@/lib/hooks/useVideoPlayer";
 interface VideoPlayerProps {
   src: string;
 }

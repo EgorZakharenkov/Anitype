@@ -1,11 +1,10 @@
 "use client";
 
 import { FC, SetStateAction, useState } from "react";
-
-import { SearchIcon } from "@/components/icons/search";
-import { Input } from "@/components/ui/input";
-import { useOutside } from "@/utils/hooks/useOutside";
-import { Ellipse } from "@/components/ui/ellipse";
+import { useOutside } from "@/lib/hooks/useOutside";
+import { Ellipse } from "@/components/ui/Ellipse";
+import { Input } from "@/components/ui/Input";
+import { SearchIcon } from "@/components/shared/icons/search";
 
 interface SearchProps {
   value?: string;

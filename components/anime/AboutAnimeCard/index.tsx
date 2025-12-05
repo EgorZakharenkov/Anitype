@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./style.module.scss";
-import { formatValue } from "@/utils/helpers/formatValue";
+import { formatValue } from "@/lib/helpers/formatValue";
 interface AboutAnimeCardProps {
   data: {
     key: string;

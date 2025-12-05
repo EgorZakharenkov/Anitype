@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Button } from "@/components/ui/button";
 import styles from "./style.module.scss";
+import { Button } from "@/components/ui/Button";
 
 interface BannerInfoProps {
   title: string;

@@ -2,14 +2,15 @@
 
 import { FC, useEffect, useState, useMemo } from "react";
 import { useAnimeStore } from "@/stores/animeStore";
-import { VideoPlayer } from "@/components/video-player/index";
-import styles from "./styles.module.scss";
-import { CustomSelect } from "@/components/ui/custom-select";
+import styles from "../styles.module.scss";
+
+import { useEpisodeStore } from "@/stores/episodeStore";
+import { VideoPlayer } from "@/components/video/Player";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 import {
   episodeToSelectOptions,
   qualitiesToSelectOptions,
-} from "@/utils/helpers/selectHelprer";
-import { useEpisodeStore } from "@/stores/episodeStore";
+} from "@/lib/helpers/selectHelprer";
 
 interface VideoCardProps {
   id: string;
@@ -21,6 +22,7 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
   const [selectedQuality, setSelectedQuality] = useState<string>("720p");
   const [currentAnimeEpisodeIndex, setCurrentAnimeEpisodeIndex] =
     useState<number>(getEpisodeIndex(id));
+
   const videoUrl = useMemo(() => {
     const episode = currentAnime?.episodes[currentAnimeEpisodeIndex];
     if (!episode) return "";
@@ -41,7 +43,7 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
 
   useEffect(() => {
     fetchCurrentAnime(id);
-  }, [id, fetchCurrentAnime]);
+  }, [id]);
 
   const handleEpisodeChange = (value: string) => {
     const episodeIndex = parseInt(value);

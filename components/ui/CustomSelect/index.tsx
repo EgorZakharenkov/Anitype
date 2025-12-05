@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/shadcn/select";
 
 export interface SelectOption {
   value: string;
@@ -38,13 +38,9 @@ export const CustomSelect: FC<CustomSelectProps> = ({
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {options.map((option) => (
-            <SelectItem
-              key={option.value}
-              value={option.value}
-              disabled={option.disabled}
-            >
-              {option.label}
+          {options.map(({ value, label, disabled }) => (
+            <SelectItem key={value} value={value} disabled={disabled}>
+              {label}
             </SelectItem>
           ))}
         </SelectGroup>
