@@ -8,11 +8,13 @@ interface AnimeStoreState {
   recommended: AnimeItem[] | null;
   catalog: AnimeItem[] | null;
   currentAnime: AnimeItem | null;
+  searchAnime: AnimeItem[] | null;
   loading: boolean;
   error: boolean;
   fetchAnimeList: () => Promise<void>;
   fetchCatalogReleases: () => Promise<void>;
   fetchCurrentAnime: (id: string) => Promise<void>;
+  fetchSearchAnime: (search: string) => Promise<void>;
 }
 
 export const useAnimeStore = create<AnimeStoreState>((set) => ({
@@ -21,6 +23,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
   loading: false,
   error: false,
   currentAnime: null,
+  searchAnime: null,
 
   fetchAnimeList: async () => {
     set({ loading: true, error: false });
@@ -68,6 +71,27 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
       });
 
       set({ currentAnime: response.data });
-    } catch (error) {}
+    } catch (error) {
+      set({ loading: false, error: true });
+      console.error("Error fetching anime:", error);
+    }
+  },
+
+  fetchSearchAnime: async (search: string) => {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/app/search/releases?query=${search}`,
+        {
+          params: {
+            include: "id,name,poster",
+          },
+        },
+      );
+
+      set({ searchAnime: response.data });
+    } catch (error) {
+      set({ loading: false, error: true });
+      console.error("Error fetching anime:", error);
+    }
   },
 }));
