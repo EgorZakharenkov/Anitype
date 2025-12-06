@@ -5,6 +5,14 @@ import { useOutside } from "@/lib/hooks/useOutside";
 import { Ellipse } from "@/components/ui/Ellipse";
 import { Input } from "@/components/ui/Input";
 import { SearchIcon } from "@/components/shared/icons/search";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/shadcn/dialog";
 
 interface SearchProps {
   value?: string;
@@ -25,17 +33,23 @@ export const Search: FC<SearchProps> = ({}) => {
     setValue(e.target.value);
   };
   return (
-    <div ref={outsideClick} onClick={handleClick}>
-      <Ellipse isOpen={open}>
-        {open && (
-          <Input
-            value={value}
-            onChange={handleChangeValue}
-            placeholder={"Введите для поиска"}
-          />
-        )}
-        <SearchIcon />
-      </Ellipse>
-    </div>
+    <Dialog>
+      <form action="">
+        <DialogTrigger>
+          <Ellipse>
+            <SearchIcon />
+          </Ellipse>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[1200px] h-11/12">
+          <DialogHeader>
+            <DialogTitle>Edit profile</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you&apos;re
+              done.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </form>
+    </Dialog>
   );
 };
