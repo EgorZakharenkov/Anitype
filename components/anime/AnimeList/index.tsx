@@ -24,7 +24,7 @@ export const ListAnime: FC<AnimeListProps> = ({ error, titles, title }) => {
         <CarouselContent>
           {titles ? (
             titles.map(({ id, name, poster, description }) => (
-              <CarouselItem className="lg:basis-1/6" key={id}>
+              <CarouselItem className="lg:basis-1/5" key={id}>
                 <AnimeListItem
                   id={id}
                   key={id}

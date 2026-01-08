@@ -17,7 +17,8 @@ interface AnimeCard {
 }
 
 export const AnimeCard: FC<AnimeCard> = ({ id }) => {
-  const { fetchCurrentAnime, currentAnime } = useAnimeStore();
+  const { fetchCurrentAnime, currentAnime, currentAnimeLoading } =
+    useAnimeStore();
   const { addNavItem } = useNavigationStore();
   useEffect(() => {
     fetchCurrentAnime(id);
@@ -30,10 +31,14 @@ export const AnimeCard: FC<AnimeCard> = ({ id }) => {
     });
   };
 
+  if (currentAnimeLoading) {
+    return <div>Загрузка... Тут будет твой компонент загрузки</div>;
+  }
+
   return (
     <div>
-      <div className={styles.card}>
-        {currentAnime ? (
+      {currentAnime && (
+        <div className={styles.card}>
           <>
             <Image
               width={500}
@@ -72,10 +77,8 @@ export const AnimeCard: FC<AnimeCard> = ({ id }) => {
               </div>
             </div>
           </>
-        ) : (
-          <h1>Загрузка...</h1>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

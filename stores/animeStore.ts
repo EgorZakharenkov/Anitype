@@ -10,6 +10,7 @@ interface AnimeStoreState {
   currentAnime: AnimeItem | null;
   searchAnime: AnimeItem[] | null;
   loading: boolean;
+  currentAnimeLoading: boolean;
   error: boolean;
   fetchAnimeList: () => Promise<void>;
   fetchCatalogReleases: () => Promise<void>;
@@ -23,6 +24,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
   loading: false,
   error: false,
   currentAnime: null,
+  currentAnimeLoading: false,
   searchAnime: null,
 
   fetchAnimeList: async () => {
@@ -62,6 +64,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
     }
   },
   fetchCurrentAnime: async (id: string) => {
+    set({ currentAnimeLoading: true, error: false });
     try {
       const response = await axios.get(`${baseUrl}/anime/releases/${id}`, {
         params: {
@@ -70,7 +73,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
         },
       });
 
-      set({ currentAnime: response.data });
+      set({ currentAnime: response.data, currentAnimeLoading: false });
     } catch (error) {
       set({ loading: false, error: true });
       console.error("Error fetching anime:", error);
