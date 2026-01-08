@@ -13,7 +13,7 @@ import {
 import { useDebounce } from "@/lib/hooks/useDebounce";
 import { useAnimeStore } from "@/stores/animeStore";
 import { AnimeSearchItem } from "@/components/anime/AnimeSearchItem";
-
+import styles from "./style.module.scss";
 interface SearchProps {
   value?: string;
 }
@@ -50,14 +50,16 @@ export const Search: FC<SearchProps> = ({}) => {
               onChange={handleChangeValue}
             />
           </DialogHeader>
-          {searchAnime &&
-            searchAnime.map(({ poster, name, id }) => (
-              <AnimeSearchItem
-                key={id}
-                image={poster.preview}
-                name={name.main}
-              />
-            ))}
+          <div className={styles.wrapper}>
+            {searchAnime &&
+              searchAnime.map(({ poster, name, id }) => (
+                <AnimeSearchItem
+                  key={id}
+                  image={poster.preview}
+                  name={name.main}
+                />
+              ))}
+          </div>
         </DialogContent>
       </form>
     </Dialog>
