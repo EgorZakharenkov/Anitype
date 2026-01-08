@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/Input";
 import { SearchIcon } from "@/components/shared/icons/search";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTrigger,
@@ -53,11 +54,13 @@ export const Search: FC<SearchProps> = ({}) => {
           <div className={styles.wrapper}>
             {searchAnime &&
               searchAnime.map(({ poster, name, id }) => (
-                <AnimeSearchItem
-                  key={id}
-                  image={poster.preview}
-                  name={name.main}
-                />
+                <DialogClose key={id}>
+                  <AnimeSearchItem
+                    id={id}
+                    image={poster.preview}
+                    name={name.main}
+                  />
+                </DialogClose>
               ))}
           </div>
         </DialogContent>

@@ -1,14 +1,33 @@
 import { FC } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
+import Link from "next/link";
+import { useNavigationStore } from "@/stores/navigationStore";
 interface AnimeSearchItemProps {
   image: string;
   name: string;
+  id: number;
 }
 
-export const AnimeSearchItem: FC<AnimeSearchItemProps> = ({ image, name }) => {
+export const AnimeSearchItem: FC<AnimeSearchItemProps> = ({
+  image,
+  name,
+  id,
+}) => {
+  const { addNavItem } = useNavigationStore();
+
+  const handleCLick = () => {
+    addNavItem({
+      href: `/anime/${id}`,
+      label: name,
+    });
+  };
   return (
-    <div className={styles.searchItem}>
+    <Link
+      onClick={handleCLick}
+      href={`/anime/${id}`}
+      className={styles.searchItem}
+    >
       <Image
         src={`https://static-libria.weekstorm.one${image}`}
         alt={name}
@@ -16,6 +35,6 @@ export const AnimeSearchItem: FC<AnimeSearchItemProps> = ({ image, name }) => {
         height={50}
       />
       <h2>{name}</h2>
-    </div>
+    </Link>
   );
 };
