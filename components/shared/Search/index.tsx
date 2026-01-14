@@ -9,6 +9,7 @@ import {
   DialogClose,
   DialogContent,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/shadcn/dialog";
 import { useDebounce } from "@/lib/hooks/useDebounce";
@@ -51,7 +52,8 @@ export const Search: FC<SearchProps> = ({}) => {
           </Ellipse>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[1200px] h-11/12 overflow-scroll">
-          <DialogHeader>
+          <DialogHeader className="sticky top-[-23px] p-4 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <DialogTitle className="text-white">Поиск</DialogTitle>
             <Input
               value={value}
               placeholder={"Название аниме..."}

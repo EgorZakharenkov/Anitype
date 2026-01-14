@@ -15,9 +15,10 @@ export const AnimeSearchItem: FC<AnimeSearchItemProps> = ({
   name,
   id,
 }) => {
-  const { addNavItem } = useNavigationStore();
+  const { addNavItem, clearNavItems } = useNavigationStore();
 
   const handleCLick = () => {
+    clearNavItems();
     addNavItem({
       href: `/anime/${id}`,
       label: name,

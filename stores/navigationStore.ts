@@ -17,7 +17,7 @@ interface NavigationStore {
 
 export const useNavigationStore = create<NavigationStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       navItems: [
         { id: "home", label: "Для вас", href: "/" },
         { id: "library", label: "Библиотека", href: "/library" },
