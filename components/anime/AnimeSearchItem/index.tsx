@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { useNavigationStore } from "@/stores/navigationStore";
+
 interface AnimeSearchItemProps {
   image: string;
   name: string;

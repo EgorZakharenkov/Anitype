@@ -21,6 +21,7 @@ interface SearchProps {
 
 export const Search: FC<SearchProps> = ({}) => {
   const [value, setValue] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const searchValue = useDebounce(value, 500);
   const { fetchSearchAnime, searchAnime } = useAnimeStore();
 
@@ -35,10 +36,16 @@ export const Search: FC<SearchProps> = ({}) => {
   }) => {
     setValue(e.target.value);
   };
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <form action="">
-        <DialogTrigger>
+        <DialogTrigger onClick={handleOpen}>
           <Ellipse>
             <SearchIcon />
           </Ellipse>
@@ -54,7 +61,7 @@ export const Search: FC<SearchProps> = ({}) => {
           <div className={styles.wrapper}>
             {searchAnime &&
               searchAnime.map(({ poster, name, id }) => (
-                <DialogClose key={id}>
+                <DialogClose onClick={handleClose} key={id}>
                   <AnimeSearchItem
                     id={id}
                     image={poster.preview}
