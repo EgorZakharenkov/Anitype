@@ -1,16 +1,18 @@
 "use client";
-import { FC } from "react";
+import { FC, useRef } from "react";
 import styles from "../styles.module.scss";
-import { useVideoPlayer } from "@/lib/hooks/useVideoPlayer";
+import { useVideoProgress } from "@/lib/hooks/useVideoProgress";
 interface VideoPlayerProps {
   src: string;
+  id: string | number;
 }
 
-export const VideoPlayer: FC<VideoPlayerProps> = ({ src }) => {
-  const { playerState, setPlayerState, playerRef, videoRef } = useVideoPlayer();
+export const VideoPlayer: FC<VideoPlayerProps> = ({ src, id }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
 
+  useVideoProgress(id, videoRef);
   return (
-    <div className={styles.videoContainer} ref={playerRef}>
+    <div className={styles.videoContainer}>
       <video ref={videoRef} src={src} controls></video>
     </div>
   );
