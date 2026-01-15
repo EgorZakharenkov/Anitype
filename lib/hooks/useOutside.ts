@@ -1,3 +1,4 @@
+/*
 import { useEffect, useRef } from "react";
 
 export const useOutside = (callBack: () => void) => {
@@ -19,3 +20,4 @@ export const useOutside = (callBack: () => void) => {
 
   return ref;
 };
+*/
