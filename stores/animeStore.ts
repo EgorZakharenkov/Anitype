@@ -34,7 +34,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
         `${baseUrl}/anime/releases/recommended`,
         {
           params: {
-            limit: 14,
+            limit: 10,
             include: "id,name,poster,description",
           },
         },
@@ -52,7 +52,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
         `${baseUrl}/anime/releases/latest`,
         {
           params: {
-            limit: 4,
+            limit: 10,
             include: "id,name,poster,description",
           },
         },

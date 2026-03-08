@@ -16,7 +16,7 @@ export interface SelectOption {
 
 interface CustomSelectProps {
   options: SelectOption[];
-  value?: string;
+  value?: string | number;
   onValueChange: (value: string) => void;
   placeholder?: string;
   className?: string;
@@ -32,7 +32,11 @@ export const CustomSelect: FC<CustomSelectProps> = ({
   disabled = false,
 }) => {
   return (
-    <Select value={value} onValueChange={onValueChange} disabled={disabled}>
+    <Select
+      value={String(value)}
+      onValueChange={onValueChange}
+      disabled={disabled}
+    >
       <SelectTrigger className={className}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>

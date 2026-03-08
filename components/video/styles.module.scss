@@ -8,8 +8,175 @@
   display: flex;
   gap: 20px;
 }
-
-
 .videoContainer {
+  position: relative;
+  width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
+
+  video {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 20px 20px 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.visible {
+      opacity: 1;
+    }
+
+    .progressBar {
+      position: relative;
+      width: 100%;
+      height: 5px;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      margin-bottom: 10px;
+
+      .progress {
+        position: absolute;
+        height: 100%;
+        background: #fff;
+        pointer-events: none;
+      }
+      .buffer {
+        position: absolute;
+        height: 100%;
+        background: rgba(255,255,255,0.5);
+        pointer-events: none;
+      }
+    }
+
+    .controlsBottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+
+      .leftControls, .rightControls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 5px;
+
+        &:hover {
+          color: #ff0000;
+        }
+      }
+
+      .volumeControl {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        .volumeSlider {
+          width: 80px;
+          -webkit-appearance: none;
+          appearance: none;
+          cursor: pointer;
+        }
+
+        /* Стили для трека (полосы) */
+        .volumeSlider::-webkit-slider-runnable-track {
+          width: 100%;
+          height: 4px;
+          border-radius: 2px;
+        }
+
+        .volumeSlider::-moz-range-track {
+          width: 100%;
+          height: 4px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 2px;
+        }
+
+        /* Стили для заполненной части (прогресса) */
+        .volumeSlider::-webkit-slider-runnable-track {
+          background: #b6abab;
+        }
+
+        .volumeSlider::-moz-range-progress {
+          height: 4px;
+          background: #605e5e;
+          border-radius: 2px;
+        }
+
+        /* Стили для ползунка (кружка) */
+        .volumeSlider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 12px;
+          height: 12px;
+          background: #fff;
+          border-radius: 50%;
+          margin-top: -4px;
+          cursor: pointer;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .volumeSlider::-moz-range-thumb {
+          width: 12px;
+          height: 12px;
+          background: #686363;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Убираем стандартные outline и добавляем свои при фокусе */
+        .volumeSlider:focus {
+          outline: none;
+        }
+
+        .volumeSlider:focus::-webkit-slider-thumb {
+          box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .volumeSlider:focus::-moz-range-thumb {
+          box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+      }
+
+      .time {
+        font-size: 14px;
+        font-family: monospace;
+      }
+
+      .speedSelect {
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: 1px solid white;
+        padding: 2px;
+        border-radius: 3px;
+        cursor: pointer;
+
+        option {
+          background: black;
+        }
+      }
+    }
+  }
 }

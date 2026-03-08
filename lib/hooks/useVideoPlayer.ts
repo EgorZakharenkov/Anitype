@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from "react";
 import { PlayerState } from "@/types/video.types";
 
 export const useVideoPlayer = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<HTMLDivElement>(null);
   const [playerState, setPlayerState] = useState<PlayerState>({
     isPlaying: false,
