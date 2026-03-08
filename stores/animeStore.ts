@@ -35,7 +35,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
         {
           params: {
             limit: 10,
-            include: "id,name,poster,description",
+            include: "id,name,poster,description,episodes_total",
           },
         },
       );
@@ -53,7 +53,7 @@ export const useAnimeStore = create<AnimeStoreState>((set) => ({
         {
           params: {
             limit: 10,
-            include: "id,name,poster,description",
+            include: "id,name,poster,description,episodes_total",
           },
         },
       );

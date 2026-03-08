@@ -10,6 +10,7 @@ interface AnimeItemProps {
   name: string;
   image: string;
   description?: string;
+  episodes: string;
 }
 
 export const AnimeListItem: FC<AnimeItemProps> = ({
@@ -18,6 +19,7 @@ export const AnimeListItem: FC<AnimeItemProps> = ({
   rating,
   image,
   description,
+  episodes,
 }) => {
   const { addNavItem } = useNavigationStore();
   const link = `https://static-libria.weekstorm.one${image}`;
@@ -25,6 +27,7 @@ export const AnimeListItem: FC<AnimeItemProps> = ({
     ? description.split(" ").slice(0, 25).join(" ")
     : "Нет описания";
 
+  const episodesInfo = episodes ? `${episodes} эпизодов` : "";
   const handleCLick = () => {
     addNavItem({
       href: `/anime/${id}`,
@@ -33,16 +36,21 @@ export const AnimeListItem: FC<AnimeItemProps> = ({
   };
   return (
     <Link onClick={handleCLick} href={`/anime/${id}`} className={styles.anime}>
-      <span className={styles.rating}>{rating}</span>
-      <span className={styles.name}>{name}</span>
-      <Image
-        width={300}
-        height={180}
-        className={styles.image}
-        src={link}
-        alt={"anime image"}
-      />
-      <h4 className={styles.description}>{truncatedDescription}...</h4>
+      <div className={styles.wrapper}>
+        <span className={styles.rating}>{rating}</span>
+        <Image
+          width={300}
+          height={180}
+          className={styles.image}
+          src={link}
+          alt={"anime image"}
+        />
+        <h4 className={styles.description}>{truncatedDescription}...</h4>
+      </div>
+      <div className={styles.info}>
+        <span className={styles.name}>{name}</span>
+        <p className={styles.episodes}>{episodesInfo}</p>
+      </div>
     </Link>
   );
 };
