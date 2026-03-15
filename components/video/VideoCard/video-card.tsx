@@ -57,7 +57,9 @@ export const VideoCard: FC<VideoCardProps> = ({ id }) => {
 
   return (
     <div className={styles.videoCard}>
-      {videoUrl && <VideoPlayer id={id} src={videoUrl} />}
+      {videoUrl && (
+        <VideoPlayer opening={currentEpisode?.opening} id={id} src={videoUrl} />
+      )}
       <div className={styles.settings}>
         {currentAnime && (
           <CustomSelect

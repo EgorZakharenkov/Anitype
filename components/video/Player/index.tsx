@@ -26,9 +26,13 @@ import { VolumeControl } from "@/components/video/VolumeControl";
 interface VideoPlayerProps {
   src: string;
   id: string | number;
+  opening?: {
+    start: number | null;
+    stop: number | null;
+  };
 }
 
-export const VideoPlayer: FC<VideoPlayerProps> = ({ src, id }) => {
+export const VideoPlayer: FC<VideoPlayerProps> = ({ src, id, opening }) => {
   const progressBarRef = useRef<HTMLDivElement | null>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout>(null);
   const [isControlsVisible, setIsControlsVisible] = useState(true);
@@ -210,6 +214,32 @@ export const VideoPlayer: FC<VideoPlayerProps> = ({ src, id }) => {
     showControls,
   ]);
 
+  const handleSkipOpening = () => {
+    if (opening?.stop && opening.start) {
+      seek(
+        Math.min(
+          playerState.currentTime - playerState.currentTime + opening.stop,
+          playerState.duration,
+        ),
+      );
+    }
+  };
+
+  const isOpening = () => {
+    if (opening?.stop && opening.start) {
+      if (
+        playerState.currentTime > opening.start &&
+        playerState.currentTime < opening.stop
+      ) {
+        return (
+          <div className={styles.skipBtn}>
+            <Button handleClick={handleSkipOpening}>Пропустить</Button>
+          </div>
+        );
+      }
+    }
+    return null;
+  };
   return (
     <div
       ref={playerRef}
@@ -217,6 +247,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = ({ src, id }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
+      {isOpening()}
       <video
         ref={videoRef}
         src={src}
